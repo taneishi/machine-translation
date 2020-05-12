@@ -13,13 +13,15 @@ from torchtext.data import Field, BucketIterator, TabularDataset
 from model import Encoder, Decoder, Seq2Seq
 
 import random
+
 random.seed(0)
 torch.manual_seed(0)
 torch.cuda.manual_seed(0)
 
 import sentencepiece as spm
+
 sp = spm.SentencePieceProcessor()
-sp.Load('../../spiece/ja.wiki.bpe.vs5000.model')
+sp.Load('ja.wiki.bpe.vs5000.model')
 
 def tokenize_jp(x):
     x = str(x).lower()
@@ -52,7 +54,12 @@ TRG.build_vocab(train_dt, min_freq=2)
 bsize = 32
 gpu = False
 device = torch.device('cuda' if gpu and torch.cuda.is_available() else 'cpu')
-train_it, valid_it, test_it = BucketIterator.splits((train_dt, valid_dt, test_dt), batch_size=bsize, sort_key=lambda x: len(x.jp), sort_within_batch=False, device=device)
+train_it, valid_it, test_it = BucketIterator.splits(
+        (train_dt, valid_dt, test_dt), 
+        batch_size=bsize, 
+        sort_key=lambda x: len(x.jp), 
+        sort_within_batch=False, 
+        device=device)
 
 '''
 for b in train_it:
@@ -63,7 +70,7 @@ for b in train_it:
 def train(model, train_it, optimizer, criterion, clip):
     model.train()
     epoch_loss = 0
-    for i, batch in tdqm(enumerate(train_it)):
+    for i, batch in tqdm(enumerate(train_it)):
         src = batch.jp
         trg = batch.en
         optimizer.zero_grad()
@@ -122,6 +129,7 @@ for ep in range(epoch):
 
 model.load_state_dict(torch.load(model_save_path))
 test_loss = evaluate(model, test_it, criterion)
+
 print(f'|test loss: {test_loss: .3f} | test_ppl: {math.exp(test_loss):7.3f}|')
 
 def translate_sentence(sentence):
@@ -136,10 +144,13 @@ def translate_sentence(sentence):
 candidate = ' '.join(vars(valid_dt.examples[2])['jp'])
 #candidate = '私はリンゴが好きです'
 candidate_translation = ' '.join(vars(valid_dt.examples[2])['en'])
-print (candidate)
-print (candidate_translation)
-print (translate_sentence(candidate))
+
+print(candidate)
+print(candidate_translation)
+print(translate_sentence(candidate))
+
 tokenized = tokenize_jp(candidate)
 numericalised = [SRC.vocab.stoi[t] for t in tokenized]
 back_to_candidate = [SRC.vocab.itos[n] for n in numericalised][1:]
-print (back_to_candidate)
+
+print(back_to_candidate)
