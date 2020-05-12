@@ -3,7 +3,7 @@ import torch.nn as nn
 import random
 
 class Encoder(nn.Module):
-    def __init__(self, input_dim, emb_dim, hid_dim, dropout):
+    def __init__(self, input_dim, emb_dim, hid_dim, nlayers, dropout):
         super().__init__()
         self.input_dim = input_dim
         self.emb_dim = emb_dim
@@ -23,7 +23,7 @@ class Encoder(nn.Module):
         return hidden
 
 class Decoder(nn.Module):
-    def __init__(self, output_dim, emb_dim, hid_dim, dropout):
+    def __init__(self, output_dim, emb_dim, hid_dim, nlayers, dropout):
         super().__init__()
         self.output_dim = output_dim
         self.hid_dim = hid_dim

@@ -10,7 +10,7 @@ import torch.nn as nn
 import torchtext
 from torchtext.data import Field, BucketIterator, TabularDataset
 
-from model import Encoder, Decoder, Seq2Seq
+from model2 import Encoder, Decoder, Seq2Seq
 
 import random
 
@@ -101,8 +101,10 @@ hidden_dim = 256
 nlayers = 2
 enc_dropout = 0.3
 dec_dropout = 0.3
+
 enc = Encoder(input_dim, enc_emb_dim, hidden_dim, nlayers, enc_dropout)
 dec = Decoder(out_dim, dec_emb_dim, hidden_dim, nlayers, dec_dropout)
+
 model = Seq2Seq(enc, dec, device).to(device)
 
 optimizer = optim.Adam(model.parameters())
