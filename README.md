@@ -1,12 +1,11 @@
-# Machine_Translation_Seq2Seq
+# Machine translation using LSTM-based encoder-decoder model in PyTorch
 
-Machine translation (jp-en) using LSTM-based encoder-decoder model (PyTorch).
 This is the implementation of several models:
 
 - model.py, [Sequence to Sequence Learning with Neural Networks](https://arxiv.org/abs/1409.3215)
 - model2.py, [Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://arxiv.org/abs/1406.1078)
 
-adapted to JP-EN translation.
+adapted to JP-EN translation. These models are also known as seq2seq models.
   
 # Data
 
