@@ -1,7 +1,7 @@
-import random
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import random
 
 class Encoder(nn.Module):
     def __init__(self, input_dim, emb_dim, hidden_dim, nlayers, dropout):
@@ -20,7 +20,6 @@ class Encoder(nn.Module):
         embedded = self.dropout(self.embedding(src))
         outputs, (hidden, cell) = self.rnn(embedded)
         return hidden, cell
-
 
 class Decoder(nn.Module):
     def __init__(self, out_dim, emb_dim, hidden_dim, nlayers, dropout):
@@ -74,5 +73,3 @@ class Seq2Seq(nn.Module):
             top1 = output.max(1)[1]
             inputz = (trg[t] if teacher_force else top1)
         return outputs
-
-         

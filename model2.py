@@ -76,7 +76,3 @@ class Seq2Seq(nn.Module):
             top1 = output.max(1)[1] #the prediction of the next output
             input = (trg[t] if teacher_force else top1) #the next input for decoder is either the real y or the prediction
         return outputs
-
-        
-
-        

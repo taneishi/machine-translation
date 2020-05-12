@@ -21,7 +21,7 @@ torch.cuda.manual_seed(0)
 import sentencepiece as spm
 
 sp = spm.SentencePieceProcessor()
-sp.Load('ja.wiki.bpe.vs5000.model')
+sp.Load('data/ja.wiki.bpe.vs5000.model')
 
 def tokenize_jp(x):
     x = str(x).lower()
