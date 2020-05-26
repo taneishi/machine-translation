@@ -1,12 +1,8 @@
-import pandas
-
-def read_excel(filename):
-    df = pandas.read_excel(filename, sheet_name=0)
-    return df
+import pandas as pd
 
 def main():
     filename = 'data/JEC_basic_sentence_v1-2.xls' 
-    df = read_excel(filename)
+    df = pd.read_excel(filename, sheet_name=0)
 
     df.to_csv('data/csvfile.csv', encoding='utf-8', index=False)
 
