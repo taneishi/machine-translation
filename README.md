@@ -1,18 +1,18 @@
 # Machine translation using LSTM-based encoder-decoder model in PyTorch
 
-This is the implementation of several models:
+## Model
 
-- model.py, [Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://arxiv.org/abs/1406.1078)
+This is the implementation of
+
+- [Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://arxiv.org/abs/1406.1078)
 
 adapted to JP-EN translation. These models are also known as seq2seq models.
   
-# Data
+## Data
 
 - https://nlp.stanford.edu/projects/jesc/, official split.
 
-- [JEC_basic_sentence_v1-2.xls](http://nlp.ist.i.kyoto-u.ac.jp/EN/)
-
-The xls data is converted into csv with panda (preprocess.py).
+- [JEC_basic_sentence_v1-2.xls](http://nlp.ist.i.kyoto-u.ac.jp/EN/), converted into csv with pandas (preprocess.py).
 
 Japanese is tokenized using [sentencepiece](https://github.com/google/sentencepiece/), English is tokenized using space (sorry, too lazy).
 
