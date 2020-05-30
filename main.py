@@ -6,7 +6,7 @@ import sentencepiece as spm
 import random
 import math
 
-from model import Encoder, Decoder, Seq2Seq
+from model2 import Encoder, Decoder, Seq2Seq
 
 sp = spm.SentencePieceProcessor()
 sp.Load('model/ja.wiki.bpe.vs5000.model')
